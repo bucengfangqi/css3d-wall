@@ -2,96 +2,109 @@
 <html>
 
 <head>
-	<title>three.js css3d - periodic table</title>
+	<title>蒲菲特-20周年庆典🎉🎉🎉</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="sahua.css">
 	<link type="text/css" rel="stylesheet" href="main.css">
-	<style>
-		a {
-			color: #8ff;
-		}
-
-		#menu {
-			position: absolute;
-			bottom: 20px;
-			width: 100%;
-			text-align: center;
-		}
-
-		.element {
-			width: 120px;
-			height: 160px;
-			box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
-			border: 1px solid rgba(127, 255, 255, 0.25);
-			font-family: Helvetica, sans-serif;
-			text-align: center;
-			line-height: normal;
-			cursor: default;
-		}
-
-		.element:hover {
-			box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.75);
-			border: 1px solid rgba(127, 255, 255, 0.75);
-		}
-
-		.element .number {
-			position: absolute;
-			top: 20px;
-			right: 20px;
-			font-size: 12px;
-			color: rgba(127, 255, 255, 0.75);
-		}
-
-		.element .symbol {
-			position: absolute;
-			top: 40px;
-			left: 0px;
-			right: 0px;
-			font-size: 60px;
-			font-weight: bold;
-			color: rgba(255, 255, 255, 0.75);
-			text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
-		}
-
-		.element .details {
-			position: absolute;
-			bottom: 15px;
-			left: 0px;
-			right: 0px;
-			font-size: 12px;
-			color: rgba(127, 255, 255, 0.75);
-		}
-
-		button {
-			color: rgba(127, 255, 255, 0.75);
-			background: transparent;
-			outline: 1px solid rgba(127, 255, 255, 0.75);
-			border: 0px;
-			padding: 5px 10px;
-			cursor: pointer;
-		}
-
-		button:hover {
-			background-color: rgba(0, 255, 255, 0.5);
-		}
-
-		button:active {
-			color: #000000;
-			background-color: rgba(0, 255, 255, 0.75);
-		}
-	</style>
 </head>
 
 <body>
-
-	<div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table.
+	<div class="confetti-land">
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
+		<div class="confetti"></div>
 	</div>
+
+
+	<!-- <div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table.
+	</div> -->
 	<div id="container"></div>
 	<div id="menu">
 		<button id="table">TABLE</button>
 		<button id="sphere">SPHERE</button>
 		<button id="helix">HELIX</button>
 		<button id="grid">GRID</button>
+	</div>
+
+
 	</div>
 
 	<script type="module">
@@ -250,16 +263,17 @@
 				const number = document.createElement('div');
 				number.className = 'number';
 				number.textContent = (i / 5) + 1; // 编号
-				element.appendChild(number);
+				// element.appendChild(number);
 
 				const symbol = document.createElement('div');
 				symbol.className = 'symbol';
-				symbol.textContent = table[i]; // 内容 可换成头像
+				symbol.innerHTML = `<img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLlztvlBgajZNGs0iamC2Ofq27gccnHBs0UJqzvAbWl7jJ6rlicSia53KmfDcibxbXDanj1ecQ2CMO8oA/132"/>`; // 内容 可换成头像
 				element.appendChild(symbol);
 
 				const details = document.createElement('div');
 				details.className = 'details';
-				details.innerHTML = table[i + 1] + '<br>' + table[i + 2]; // 昵称吧，细节
+				// details.innerHTML = table[i + 1] + '<br>' + table[i + 2]; 
+				details.innerHTML = '熊孩子他哥' // 昵称吧，细节
 				element.appendChild(details);
 
 				const objectCSS = new CSS3DObject(element);
@@ -440,6 +454,38 @@
 
 		}
 
+
+
+
+
+		var confettiPlayers = [];
+
+		function makeItConfetti() {
+			var confetti = document.querySelectorAll('.confetti');
+
+			if (!confetti[0].animate) {
+				return false;
+			}
+
+			for (var i = 0, len = confetti.length; i < len; ++i) {
+				var confettiarr = confetti[i];
+				confettiarr.innerHTML = '<div class="rotate"><div class="askew"></div></div>';
+				var scale = Math.random() * .8 + .2;
+				var player = confettiarr.animate([
+					{ transform: 'translate3d(' + (i / len * 100) + 'vw,0,0) scale(' + scale + ')', opacity: scale },
+					{ transform: 'translate3d(' + (i / len * 100 + 10) + 'vw,100vh,0) scale(' + scale + ')', opacity: 1 }
+				], {
+					duration: Math.random() * 3000 + 3000,
+					iterations: Infinity,
+					delay: -(Math.random() * 5000)
+				});
+
+
+				confettiPlayers.push(player);
+			}
+		}
+
+		makeItConfetti();
 	</script>
 </body>
 
