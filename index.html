@@ -10,88 +10,7 @@
 </head>
 
 <body>
-	<div class="confetti-land">
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-		<div class="confetti"></div>
-	</div>
+	<div class="confetti-land" id="confetti-land"></div>
 
 
 	<!-- <div id="info"><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table.
@@ -116,7 +35,7 @@
 		import { CSS3DRenderer, CSS3DObject } from './CSS3DRenderer.js';
 
 		const table = [];
-		const total = 80; // 总数
+		const total = 100; // 总数
 		const max = 180; // 最合适数值
 		let start_index = 0;
 		if (max > total) {
@@ -130,8 +49,9 @@
 		let controls;
 
 		const objects = [];
+		const nodelist = [];
 		const targets = { table: [], sphere: [], helix: [], grid: [] };
-		
+
 		init();
 		animate();
 
@@ -157,14 +77,19 @@
 
 				const symbol = document.createElement('div');
 				symbol.className = 'symbol';
-				symbol.innerHTML = `<img src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLlztvlBgajZNGs0iamC2Ofq27gccnHBs0UJqzvAbWl7jJ6rlicSia53KmfDcibxbXDanj1ecQ2CMO8oA/132"/>`; // 内容 可换成头像
+				const img = document.createElement('img');
+				symbol.appendChild(img) // 内容 可换成头像
 				element.appendChild(symbol);
 
 				const details = document.createElement('div');
 				details.className = 'details';
 				// details.innerHTML = table[i + 1] + '<br>' + table[i + 2]; 
-				details.innerHTML = '熊孩子他哥' // 昵称吧，细节
+				details.innerHTML = 'PFT' // 昵称吧，细节
 				element.appendChild(details);
+				nodelist.push({
+					picture: img,
+					name: details
+				})
 
 				const objectCSS = new CSS3DObject(element);
 				objectCSS.position.x = Math.random() * 4000 - 2000;
@@ -345,9 +270,11 @@
 		}
 
 
-
-
-
+		let html = '';
+		for (let i = 0; i < 80; i++) {
+			html += '<div class="confetti"></div>'
+		}
+		document.getElementById('confetti-land').innerHTML = html;
 		var confettiPlayers = [];
 
 		function makeItConfetti() {
@@ -376,6 +303,16 @@
 		}
 
 		makeItConfetti();
+
+
+		setTimeout(() => {
+			const { name, picture } = nodelist[0];
+			name.innerHTML = '熊孩子他哥'
+			name.style.opacity = 1;
+			picture.style.transform = 'scale(1)';
+			picture.style.opacity = 1;
+			picture.setAttribute("src", "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLlztvlBgajZNGs0iamC2Ofq27gccnHBs0UJqzvAbWl7jJ6rlicSia53KmfDcibxbXDanj1ecQ2CMO8oA/132");
+		}, 5000);
 	</script>
 </body>
 
