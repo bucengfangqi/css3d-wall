@@ -33,10 +33,13 @@
 		import { TWEEN } from './tween.module.min.js';
 		import { TrackballControls } from './TrackballControls.js';
 		import { CSS3DRenderer, CSS3DObject } from './CSS3DRenderer.js';
+		import { OrbitControls } from './OrbitControls.js';
+
 
 		const table = [];
 		const total = 100; // 总数
 		const max = 180; // 最合适数值
+		const confetti_num = 100;// 彩纸数量（比较吃性能，不要大于100）
 		let start_index = 0;
 		if (max > total) {
 			start_index = Math.floor((max - total) / 2)
@@ -46,7 +49,7 @@
 		}
 
 		let camera, scene, renderer;
-		let controls;
+		let controls, cameraRotate;
 
 		const objects = [];
 		const nodelist = [];
@@ -102,7 +105,7 @@
 				//
 
 				const object = new THREE.Object3D();
-				object.position.x = (table[i + 3] * 140) - 1230;
+				object.position.x = (table[i + 3] * 140) - 1190;
 				object.position.y = - (table[i + 4] * 180) + 1020;
 
 				targets.table.push(object);
@@ -174,9 +177,13 @@
 			//
 
 			controls = new TrackballControls(camera, renderer.domElement);
-			controls.minDistance = 500;
+			controls.minDistance = 0;
 			controls.maxDistance = 6000;
 			controls.addEventListener('change', render);
+
+			cameraRotate = new OrbitControls(camera, renderer.domElement);
+			cameraRotate.addEventListener('change', render);
+			cameraRotate.autoRotate = true;
 
 			const buttonTable = document.getElementById('table');
 			buttonTable.addEventListener('click', function () {
@@ -239,39 +246,58 @@
 				.to({}, duration * 2)
 				.onUpdate(render)
 				.start();
-
 		}
 
 		function onWindowResize() {
-
 			camera.aspect = window.innerWidth / window.innerHeight;
 			camera.updateProjectionMatrix();
-
 			renderer.setSize(window.innerWidth, window.innerHeight);
-
 			render();
 
 		}
 
 		function animate() {
-
 			requestAnimationFrame(animate);
-
 			TWEEN.update();
-
 			controls.update();
-
+			cameraRotate.update();
 		}
-
 		function render() {
-
 			renderer.render(scene, camera);
-
 		}
 
+		function cameraZoom() {
+			var zoom = {
+				value: camera.zoom // from current zoom (no matter if it's more or less than 1)
+			};
+			var zoomEnd = {
+				value: (camera.zoom > 1.5) ? 1 : 2 // to the zoom of 1
+			};
+			var tween = new TWEEN.Tween(zoom).to(zoomEnd, 15000); // duration of tweening is 0.5 second
+			tween.onUpdate(function () {
+				camera.zoom = zoom.value;
+				camera.updateProjectionMatrix();
+				render();
+			});
+			tween.start();
+		}
+
+		cameraZoom();
+		setInterval(() => {
+			const animations = [
+				() => { transform(targets.sphere, 2000) },
+				() => { transform(targets.helix, 2000) },
+				() => { transform(targets.helix, 2000) },
+				() => { transform(targets.grid, 2000) },
+			]
+			/** 随机来一个变形动画 */
+			animations[getRandom(3)]();
+			/** 相机缩放 */
+			cameraZoom();
+		}, 1000 * 20);
 
 		let html = '';
-		for (let i = 0; i < 80; i++) {
+		for (let i = 0; i < confetti_num; i++) {
 			html += '<div class="confetti"></div>'
 		}
 		document.getElementById('confetti-land').innerHTML = html;
@@ -305,14 +331,33 @@
 		makeItConfetti();
 
 
-		setTimeout(() => {
-			const { name, picture } = nodelist[0];
-			name.innerHTML = '熊孩子他哥'
-			name.style.opacity = 1;
-			picture.style.transform = 'scale(1)';
-			picture.style.opacity = 1;
-			picture.setAttribute("src", "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLlztvlBgajZNGs0iamC2Ofq27gccnHBs0UJqzvAbWl7jJ6rlicSia53KmfDcibxbXDanj1ecQ2CMO8oA/132");
-		}, 5000);
+		function getRandom(max, plus) {
+			return Math.floor(Math.random() * (max + 1)) + (plus || 0);
+		}
+
+		/** 可用的随机位置 */
+		const emptyList = [];
+		for (let i = 0; i < total; i++) {
+			emptyList.push(i)
+		}
+
+		/** 模拟异步签到效果 */
+		for (let i = 0; i < 100; i++) {
+			setTimeout(() => {
+				const random_index = getRandom(emptyList.length - 1);
+				const random_data = emptyList[random_index];
+				emptyList.splice(random_index, 1);// 删除可用的随机位置
+				const { name, picture } = nodelist[random_data];
+				name.innerHTML = '熊孩子他哥'
+				name.style.opacity = 1;
+				picture.style.transform = 'scale(1)';
+				picture.style.opacity = 1;
+				picture.setAttribute("src", "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLlztvlBgajZNGs0iamC2Ofq27gccnHBs0UJqzvAbWl7jJ6rlicSia53KmfDcibxbXDanj1ecQ2CMO8oA/132");
+
+
+			}, 1000 + getRandom(60*1000));
+
+		}
 	</script>
 </body>
 
